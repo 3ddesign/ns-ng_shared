@@ -1,7 +1,10 @@
 {
   "name": "ns-ng-shared",
   "nativescript": {
-    "id": "org.nativescript.nsngshared"
+    "id": "org.nativescript.nsngshared",
+    "tns-ios": {
+      "version": "5.2.1"
+    }
   },
   "version": "0.0.0",
   "scripts": {
