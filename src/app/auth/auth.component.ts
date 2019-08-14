@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, } from '@angular/forms';
-import { RouterExtensions } from 'nativescript-angular/router';
+// import { RouterExtensions } from 'nativescript-angular/router';
+import { Router } from '@angular/router';
 import { TextField } from 'tns-core-modules/ui/text-field';
 import { AuthService } from './auth.service';
 
@@ -19,7 +20,7 @@ export class AuthComponent implements OnInit {
   @ViewChild('passwordEl') passwordEl: ElementRef<TextField>;
   @ViewChild('emailEl') emailEl: ElementRef<TextField>;
 
-  constructor(private router: RouterExtensions, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
 
