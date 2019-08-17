@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, } from '@angular/forms';
 // import { RouterExtensions } from 'nativescript-angular/router';
 import { Router } from '@angular/router';
-import { TextField } from 'tns-core-modules/ui/text-field';
 import { AuthService } from './auth.service';
+import { FormService } from '../halpers/form.service';
 
 @Component({
   selector: 'ns-auth',
@@ -17,10 +17,12 @@ export class AuthComponent implements OnInit {
   isLoading = false;
   emailControlIsValid = true;
   passwordControlIsValid = true;
-  @ViewChild('passwordEl') passwordEl: ElementRef<TextField>;
-  @ViewChild('emailEl') emailEl: ElementRef<TextField>;
+  @ViewChild('passwordEl', { static: true }) passwordEl: ElementRef<any>;
+  @ViewChild('emailEl', { static: true }) emailEl: ElementRef<any>;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router,
+    private authService: AuthService,
+    private formService: FormService) { }
 
   ngOnInit() {
 
@@ -45,15 +47,11 @@ export class AuthComponent implements OnInit {
   }
 
   onDone() {
-    this.emailEl.nativeElement.focus();
-    this.passwordEl.nativeElement.focus();
-    this.passwordEl.nativeElement.dismissSoftInput();
+    this.formService.dismiss([this.emailEl.nativeElement, this.passwordEl.nativeElement]);
   }
 
   onSubmit() {
-    this.emailEl.nativeElement.focus();
-    this.passwordEl.nativeElement.focus();
-    this.passwordEl.nativeElement.dismissSoftInput();
+    this.formService.dismiss([this.emailEl.nativeElement, this.passwordEl.nativeElement]);
 
     if (!this.form.value) {
       return;
