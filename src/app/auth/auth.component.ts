@@ -1,31 +1,31 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormControl, Validators, } from '@angular/forms';
-// import { RouterExtensions } from 'nativescript-angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
+// import { RouterExtensions } from 'nativescript-angular/router';
+
+// import { AuthService } from './auth.service';
 import { FormService } from '../halpers/form.service';
 
 @Component({
   selector: 'ns-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css'],
-  moduleId: module.id,
+  templateUrl: './auth.component.html'
 })
 export class AuthComponent implements OnInit {
   form: FormGroup;
-  isLogin = true;
-  isLoading = false;
   emailControlIsValid = true;
   passwordControlIsValid = true;
+  isLogin = true;
+  isLoading = false;
   @ViewChild('passwordEl', { static: true }) passwordEl: ElementRef<any>;
   @ViewChild('emailEl', { static: true }) emailEl: ElementRef<any>;
 
-  constructor(private router: Router,
-    private authService: AuthService,
-    private formService: FormService) { }
+  constructor(
+    private router: Router,
+    // private authService: AuthService,
+    private formService: FormService
+  ) {}
 
   ngOnInit() {
-
     this.form = new FormGroup({
       email: new FormControl(null, {
         updateOn: 'blur',
@@ -46,14 +46,13 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  onDone() {
-    this.formService.dismiss([this.emailEl.nativeElement, this.passwordEl.nativeElement]);
-  }
-
   onSubmit() {
-    this.formService.dismiss([this.emailEl.nativeElement, this.passwordEl.nativeElement]);
+    this.formService.dismiss([
+      this.emailEl.nativeElement,
+      this.passwordEl.nativeElement
+    ]);
 
-    if (!this.form.value) {
+    if (!this.form.valid) {
       return;
     }
 
@@ -64,28 +63,38 @@ export class AuthComponent implements OnInit {
     this.passwordControlIsValid = true;
     this.isLoading = true;
     if (this.isLogin) {
-      // console.log('Logging in');
-      this.authService.login(email, password).subscribe(res => {
-        this.router.navigate(['/challenges'], { clearHistory: true });
-        this.isLoading = false;
-      }, err => {
-        console.log(err);
-        this.isLoading = false;
-      });
+      // this.authService.login(email, password).subscribe(
+      //   resData => {
+      //     this.isLoading = false;
+      //     this.router.navigate(['/challenges']);
+      //   },
+      //   err => {
+      //     console.log(err);
+      //     this.isLoading = false;
+      //   }
+      // );
     } else {
-      // console.log('Signing up');
-      this.authService.signUp(email, password).subscribe(res => {
-        this.router.navigate(['/challenges'], { clearHistory: true });
-        this.isLoading = false;
-      }, err => {
-        console.log(err);
-        this.isLoading = false;
-      });
+      // this.authService.signUp(email, password).subscribe(
+      //   resData => {
+      //     this.isLoading = false;
+      //     this.router.navigate(['/challenges']);
+      //   },
+      //   err => {
+      //     console.log(err);
+      //     this.isLoading = false;
+      //   }
+      // );
     }
+  }
+
+  onDone() {
+    this.formService.dismiss([
+      this.emailEl.nativeElement,
+      this.passwordEl.nativeElement
+    ]);
   }
 
   onSwitch() {
     this.isLogin = !this.isLogin;
   }
-
 }

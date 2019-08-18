@@ -9,6 +9,6 @@ export const routes: Routes = [
   },
   {
       path: 'auth',
-      loadChildren: './auth/auth.module.ts#AuthModule',
+      loadChildren: './auth/auth.module#AuthModule',
   },
 ];
