@@ -20,15 +20,16 @@ export class AuthGuard implements CanLoad {
     return this.authService.user.pipe(
       take(1),
       switchMap(currentUser => {
-        if (!currentUser || !currentUser.token) {
-          return this.authService.autoLogin();
-        }
-        return of(true);
-      }),
-      tap(isAuth => {
-        if (!isAuth) {
-          this.router.navigate(['/auth']);
-        }
+        return  of(true);
+      //   if (!currentUser || !currentUser.token) {
+      //     return this.authService.autoLogin();
+      //   }
+      //   return of(true);
+      // }),
+      // tap(isAuth => {
+      //   if (!isAuth) {
+      //     this.router.navigate(['/auth']);
+      //   }
       })
     );
   }
