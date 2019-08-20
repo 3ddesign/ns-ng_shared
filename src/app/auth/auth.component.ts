@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 // import { RouterExtensions } from 'nativescript-angular/router';
 
 // import { AuthService } from './auth.service';
-import { FormService } from '../halpers/form.service';
+import { FormService } from '../helpers/form.service';
 
 @Component({
   selector: 'ns-auth',
@@ -16,8 +16,8 @@ export class AuthComponent implements OnInit {
   passwordControlIsValid = true;
   isLogin = true;
   isLoading = false;
-  @ViewChild('passwordEl', { static: true }) passwordEl: ElementRef<any>;
-  @ViewChild('emailEl', { static: true }) emailEl: ElementRef<any>;
+  @ViewChild('passwordEl') passwordEl: ElementRef<any>;
+  @ViewChild('emailEl') emailEl: ElementRef<any>;
 
   constructor(
     private router: Router,
