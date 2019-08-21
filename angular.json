@@ -6,7 +6,7 @@
     "defaultCollection": "@nativescript/schematics"
   },
   "projects": {
-    "shared-project": {
+    "ns-ng-course-shared": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -20,11 +20,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/shared-project",
+            "outputPath": "dist/ns-ng-course-shared",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -57,18 +57,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "shared-project:build"
+            "browserTarget": "ns-ng-course-shared:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "shared-project:build:production"
+              "browserTarget": "ns-ng-course-shared:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "shared-project:build"
+            "browserTarget": "ns-ng-course-shared:build"
           }
         },
         "test": {
@@ -76,8 +76,8 @@
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
             "styles": [
               "src/styles.scss"
             ],
@@ -92,8 +92,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json"
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -102,7 +102,7 @@
         }
       }
     },
-    "shared-project-e2e": {
+    "ns-ng-course-shared-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -110,11 +110,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "shared-project:serve"
+            "devServerTarget": "ns-ng-course-shared:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "shared-project:serve:production"
+              "devServerTarget": "ns-ng-course-shared:serve:production"
             }
           }
         },
@@ -130,5 +130,5 @@
       }
     }
   },
-  "defaultProject": "shared-project"
+  "defaultProject": "ns-ng-course-shared"
 }
