@@ -1,7 +1,13 @@
-<form [formGroup]="form" class="form">
+<form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
   <div class="input-field">
     <label for="email" class="label">E-Mail</label>
-    <input type="email" id="email" formControlName="email" class="input" />
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      class="input"
+      #emailEl
+    />
   </div>
   <div class="input-field">
     <label for="password" class="label">Password</label>
@@ -10,7 +16,15 @@
       id="password"
       formControlName="password"
       class="input"
+      #passwordEl
     />
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <div class="input-field text-center">
+    <button type="button" class="btn-flat" (click)="onSwitch()">
+      {{ isLogin ? 'Signup instead' : 'Login instead' }}
+    </button>
+  </div>
+  <button type="submit" class="btn btn-primary">
+    {{ isLogin ? 'Login' : 'Signup' }}
+  </button>
 </form>

@@ -3,13 +3,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 // import { RouterExtensions } from 'nativescript-angular/router';
 
-// import { AuthService } from './auth.service';
+import { AuthService } from './auth.service';
 import { FormService } from '../helpers/form.service';
 
 @Component({
   selector: 'ns-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  templateUrl: './auth.component.html'
 })
 export class AuthComponent implements OnInit {
   form: FormGroup;
@@ -22,7 +21,7 @@ export class AuthComponent implements OnInit {
 
   constructor(
     private router: Router,
-    // private authService: AuthService,
+    private authService: AuthService,
     private formService: FormService
   ) {}
 
@@ -64,27 +63,27 @@ export class AuthComponent implements OnInit {
     this.passwordControlIsValid = true;
     this.isLoading = true;
     if (this.isLogin) {
-      // this.authService.login(email, password).subscribe(
-      //   resData => {
-      //     this.isLoading = false;
-      //     this.router.navigate(['/challenges']);
-      //   },
-      //   err => {
-      //     console.log(err);
-      //     this.isLoading = false;
-      //   }
-      // );
+      this.authService.login(email, password).subscribe(
+        resData => {
+          this.isLoading = false;
+          // this.router.navigate(['/challenges']);
+        },
+        err => {
+          console.log(err);
+          this.isLoading = false;
+        }
+      );
     } else {
-      // this.authService.signUp(email, password).subscribe(
-      //   resData => {
-      //     this.isLoading = false;
-      //     this.router.navigate(['/challenges']);
-      //   },
-      //   err => {
-      //     console.log(err);
-      //     this.isLoading = false;
-      //   }
-      // );
+      this.authService.signUp(email, password).subscribe(
+        resData => {
+          this.isLoading = false;
+          // this.router.navigate(['/challenges']);
+        },
+        err => {
+          console.log(err);
+          this.isLoading = false;
+        }
+      );
     }
   }
 
