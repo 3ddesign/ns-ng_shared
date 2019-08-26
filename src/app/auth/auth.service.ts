@@ -8,7 +8,7 @@ import { RoutingService } from '../helpers/routing.service';
 import { DialogService } from '../helpers/dialog.service';
 import { StorageService } from '../helpers/storage.service';
 
-const FIREBASE_API_KEY = 'AIzaSyCmQaixQFqDgwwGaWyFRwn1DRELRLUYx1A';
+const FIREBASE_API_KEY = 'AIzaSyDW_g5fH3LG1oQv_MLhYIOfjdvAD-UG84U';
 
 interface AuthResponseData {
   kind: string;
