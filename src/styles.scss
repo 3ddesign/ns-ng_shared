@@ -42,4 +42,17 @@ body {
   background: lighten($primary, 20);
 }
 
+.btn-flat {
+  cursor: pointer;
+}
+
+.btn-flat:hover,
+.btn-flat:active {
+  color: lighten($primary, 20);
+}
+
+.text-center {
+  text-align: center;
+}
+
 @import 'app-common';
