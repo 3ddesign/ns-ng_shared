@@ -1,0 +1,25 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { TodayComponent } from './today/today.component.tns';
+// import { CurrentChallengeComponent } from './current-challenge/current-challenge.component.tns';
+
+const routes: Routes = [
+  { path: 'today', component: TodayComponent },
+  // {
+  //   path: 'current-challenge',
+  //   component: CurrentChallengeComponent
+  // },
+  // {
+  //   path: ':mode',
+  //   loadChildren:
+  //     './challenge-edit/challenge-edit.module#ChallengeEditModule'
+  // },
+  { path: '', redirectTo: '/challenges/today', pathMatch: 'full' }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class ChallengesRoutingModule {}

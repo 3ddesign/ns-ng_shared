@@ -1,0 +1,15 @@
+<div class="page" *ngIf="!currentDay">
+  <p>No challenge found!</p>
+  <button class="btn btn-primary" routerLink="/challenges/replace">
+    Create One!
+  </button>
+</div>
+<div class="page" *ngIf="currentDay">
+  <h1 class="h1">{{ currentDay.date | date }}</h1>
+  <ns-challenge-actions
+    (actionSelect)="onActionSelected($event)"
+    [chosen]="getActionName()"
+    [startDone]="getActionName() === 'complete' || getActionName() === 'fail'"
+    cancelText="Reset"
+  ></ns-challenge-actions>
+</div>
