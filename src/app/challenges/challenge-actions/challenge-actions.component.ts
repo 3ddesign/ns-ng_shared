@@ -13,8 +13,7 @@ import { DayStatus } from '../day.model';
 @Component({
   selector: 'ns-challenge-actions',
   templateUrl: './challenge-actions.component.html',
-  styleUrls: ['./challenge-actions.component.scss'],
-  moduleId: module.id
+  styleUrls: ['./challenge-actions.component.scss']
 })
 export class ChallengeActionsComponent implements OnInit, OnChanges {
   @Output() actionSelect = new EventEmitter<DayStatus>();

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ChallengeActionsComponent } from './challenge-actions.component.tns';
+import { ChallengeActionsComponent } from './challenge-actions.component';
 
 @NgModule({
   declarations: [ChallengeActionsComponent],

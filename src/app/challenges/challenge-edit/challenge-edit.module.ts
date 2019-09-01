@@ -1,22 +1,21 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { NativeScriptCommonModule } from 'nativescript-angular/common';
-import { NativeScriptRouterModule } from 'nativescript-angular/router';
-import { NativeScriptFormsModule } from 'nativescript-angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { ChallengeEditComponent } from './challenge-edit.component.tns';
+import { ChallengeEditComponent } from './challenge-edit.component';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [ChallengeEditComponent],
   imports: [
-    NativeScriptCommonModule,
-    NativeScriptFormsModule,
+    CommonModule,
+    FormsModule,
     // NativeScriptRouterModule,
-    NativeScriptRouterModule.forChild([
+    RouterModule.forChild([
       { path: '', component: ChallengeEditComponent }
     ]),
     SharedModule
-  ],
-  schemas: [NO_ERRORS_SCHEMA]
+  ]
 })
 export class ChallengeEditModule {}

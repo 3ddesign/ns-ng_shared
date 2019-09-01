@@ -1,48 +1,46 @@
-<ns-action-bar
-  [title]="isCreating ? 'Replace Challenge' : 'Edit Challenge'"
-  [hasMenu]="false"
-></ns-action-bar>
-<FlexboxLayout class="form">
-  <StackLayout class="input-field">
-    <Label
+<form
+  class="form"
+  (ngSubmit)="onSubmit(titleCtrl.value, descriptionCtrl.value)"
+>
+  <div class="input-field">
+    <label
       class="label"
-      text="Title"
       [ngClass]="{ invalid: !titleCtrl.valid && titleCtrl.touched }"
-    ></Label>
-    <TextField
+      >Title</label
+    >
+    <input
       class="input"
-      returnKeyType="next"
+      type="text"
       required
       [(ngModel)]="title"
       #titleCtrl="ngModel"
-    ></TextField>
-    <Label
-      *ngIf="!titleCtrl.valid && titleCtrl.touched"
-      text="Please enter a valid title."
-    ></Label>
-  </StackLayout>
-  <StackLayout class="input-field">
-    <Label
+    />
+    <p *ngIf="!titleCtrl.valid && titleCtrl.touched">
+      Please enter a valid title.
+    </p>
+  </div>
+  <div class="input-field">
+    <label
       class="label"
-      text="Description"
       [ngClass]="{ invalid: !descriptionCtrl.valid && descriptionCtrl.touched }"
-    ></Label>
-    <TextView
+      >Description</label
+    >
+    <textarea
       class="input"
-      returnKeyType="done"
+      rows="4"
       required
       [(ngModel)]="description"
       #descriptionCtrl="ngModel"
-    ></TextView>
-    <Label
-      *ngIf="!descriptionCtrl.valid && descriptionCtrl.touched"
-      text="Please enter a valid description."
-    ></Label>
-  </StackLayout>
-  <Button
+    ></textarea>
+    <p *ngIf="!descriptionCtrl.valid && descriptionCtrl.touched">
+      Please enter a valid description.
+    </p>
+  </div>
+  <button
+    type="submit"
     class="btn btn-primary"
-    text="Save"
-    [isEnabled]="titleCtrl.valid && descriptionCtrl.valid"
-    (tap)="onSubmit(titleCtrl.value, descriptionCtrl.value)"
-  ></Button>
-</FlexboxLayout>
+    [disabled]="!titleCtrl.valid || !descriptionCtrl.valid"
+  >
+    Save
+  </button>
+</form>

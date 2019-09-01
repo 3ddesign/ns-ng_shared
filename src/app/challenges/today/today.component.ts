@@ -7,8 +7,7 @@ import { Day, DayStatus } from '../day.model';
 @Component({
   selector: 'ns-today',
   templateUrl: './today.component.html',
-  styleUrls: ['./today.component.scss'],
-  moduleId: module.id
+  styleUrls: ['./today.component.scss']
 })
 export class TodayComponent implements OnInit, OnDestroy {
   currentDay: Day;
