@@ -11,7 +11,7 @@ const routes: Routes = [
   //   component: CurrentChallengeComponent
   // },
   {
-    path: '/:mode',
+    path: ':mode',
     loadChildren: './challenge-edit/challenge-edit.module#ChallengeEditModule'
   },
   { path: '', redirectTo: '/challenges/today', pathMatch: 'full' }
