@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+import { AuthGuard } from './auth/auth.guard';
+
 export const routes: Routes = [
   {
     path: '',
@@ -12,6 +14,7 @@ export const routes: Routes = [
   },
   {
     path: 'challenges',
-    loadChildren: './challenges/challenges.module#ChallengesModule'
+    loadChildren: './challenges/challenges.module#ChallengesModule',
+    canLoad: [AuthGuard]
   }
 ];
