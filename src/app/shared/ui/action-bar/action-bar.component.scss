@@ -1,0 +1,43 @@
+/* Add mobile styles for the component here.  */
+@import '../../../../theme/colors';
+
+.action-bar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  background: $primary;
+  box-sizing: border-box;
+
+  nav {
+    height: 100%;
+    padding: 0 1rem;
+  }
+
+  ul {
+    height: 100%;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+  }
+
+  li {
+    margin: 0 1rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  a:hover,
+  a:active,
+  a.active {
+    color: lighten($primary, 30);
+  }
+}
