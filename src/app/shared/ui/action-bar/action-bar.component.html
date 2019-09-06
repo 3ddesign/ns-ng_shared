@@ -1,11 +1,23 @@
 <header class="action-bar">
+  <h1 class="title">Monthly Challenge</h1>
   <nav>
     <ul>
-      <li><a routerLink="/challenges/today">Today</a></li>
       <li>
-        <a routerLink="/challenges/current-challenge">Current Challenge</a>
+        <a routerLink="/challenges/today" routerLinkActive="active">Today</a>
       </li>
-      <ng-content></ng-content>
+      <li>
+        <a routerLink="/challenges/current-challenge" routerLinkActive="active"
+          >Current</a
+        >
+      </li>
+      <li>
+        <a routerLink="/challenges/replace" routerLinkActive="active"
+          >Replace</a
+        >
+      </li>
+      <li>
+        <a routerLink="/challenges/edit" routerLinkActive="active">Edit</a>
+      </li>
     </ul>
   </nav>
 </header>

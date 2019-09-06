@@ -35,7 +35,7 @@ export class CurrentChallengeComponent implements OnInit, OnDestroy {
   }
 
   getRow(index: number, day: { dayInMonth: number; dayInWeek: number }) {
-    const startRow = 1;
+    const startRow = 2;
     const weekRow = Math.floor(index / 7);
     const firstWeekDayOfMonth = new Date(
       new Date().getFullYear(),

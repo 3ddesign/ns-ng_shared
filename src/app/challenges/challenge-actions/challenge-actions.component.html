@@ -8,7 +8,7 @@
     Completed
   </button>
   <div class="btn btn-success btn-rounded-lg" *ngIf="action === 'complete'">
-    <p class="fa text-center btn-alt animate-button">&#xf00c;</p>
+    <i class="fas fa-check text-center btn-alt animate-button"></i>
   </div>
   <button
     class="btn btn-fail btn-rounded-lg"
@@ -19,7 +19,7 @@
     Failed
   </button>
   <div class="btn btn-fail btn-rounded-lg" *ngIf="action === 'fail'">
-    <p class="fa text-center btn-alt animate-button">&#xf00d;</p>
+    <i class="fas fa-times text-center btn-alt animate-button"></i>
   </div>
   <button class="btn-flat" (click)="onAction('cancel')">
     {{ cancelText }}

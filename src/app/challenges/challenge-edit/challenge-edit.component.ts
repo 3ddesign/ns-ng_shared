@@ -30,7 +30,6 @@ export class ChallengeEditComponent implements OnInit {
       } else {
         this.isCreating = paramMap.get('mode') !== 'edit';
       }
-
       if (!this.isCreating) {
         this.challengeService.currentChallenge
           .pipe(take(1))
