@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, of, Subscription } from 'rxjs';
-import { take, tap, switchMap } from 'rxjs/operators';
+import { take, tap, switchMap, map } from 'rxjs/operators';
 
 import { Challenge } from './challenge.model';
 import { DayStatus, Day } from './day.model';
@@ -48,7 +48,7 @@ export class ChallengeService implements OnDestroy {
           }.json?auth=${currentUser.token}`
         );
       }),
-      tap(resData => {
+      map(resData => {
         if (resData) {
           const loadedChallenge = new Challenge(
             resData.title,
@@ -57,7 +57,13 @@ export class ChallengeService implements OnDestroy {
             resData.month,
             resData._days
           );
-          this._currentChallenge.next(loadedChallenge);
+          return loadedChallenge;
+        }
+        return null;
+      }),
+      tap(challenge => {
+        if (challenge) {
+          this._currentChallenge.next(challenge);
         }
       })
     );
@@ -70,22 +76,25 @@ export class ChallengeService implements OnDestroy {
       new Date().getFullYear(),
       new Date().getMonth()
     );
-    this.saveToServer(newChallenge);
     this._currentChallenge.next(newChallenge);
+    return this.saveToServer(newChallenge);
   }
 
   updateChallenge(title: string, description: string) {
-    this._currentChallenge.pipe(take(1)).subscribe(challenge => {
-      const updatedChallenge = new Challenge(
-        title,
-        description,
-        challenge.year,
-        challenge.month,
-        challenge.days
-      );
-      this.saveToServer(updatedChallenge);
-      this._currentChallenge.next(updatedChallenge);
-    });
+    return this._currentChallenge.pipe(
+      take(1),
+      switchMap(challenge => {
+        const updatedChallenge = new Challenge(
+          title,
+          description,
+          challenge.year,
+          challenge.month,
+          challenge.days
+        );
+        this._currentChallenge.next(updatedChallenge);
+        return this.saveToServer(updatedChallenge);
+      })
+    );
   }
 
   updateDayStatus(dayInMonth: number, status: DayStatus) {
@@ -98,7 +107,7 @@ export class ChallengeService implements OnDestroy {
       );
       challenge.days[dayIndex].status = status;
       this._currentChallenge.next(challenge);
-      this.saveToServer(challenge);
+      this.saveToServer(challenge).subscribe(res => null);
     });
   }
 
@@ -107,23 +116,19 @@ export class ChallengeService implements OnDestroy {
   }
 
   private saveToServer(challenge: Challenge) {
-    this.authService.user
-      .pipe(
-        take(1),
-        switchMap(currentUser => {
-          if (!currentUser || !currentUser.isAuth) {
-            return of(null);
-          }
-          return this.http.put(
-            `https://ns-ng-course.firebaseio.com/challenge/${
-              currentUser.id
-            }.json?auth=${currentUser.token}`,
-            challenge
-          );
-        })
-      )
-      .subscribe(res => {
-        console.log(res);
-      });
+    return this.authService.user.pipe(
+      take(1),
+      switchMap(currentUser => {
+        if (!currentUser || !currentUser.isAuth) {
+          return of(null);
+        }
+        return this.http.put(
+          `https://ns-ng-course.firebaseio.com/challenge/${
+            currentUser.id
+          }.json?auth=${currentUser.token}`,
+          challenge
+        );
+      })
+    );
   }
 }

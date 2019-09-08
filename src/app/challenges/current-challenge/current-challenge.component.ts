@@ -1,7 +1,6 @@
-import { Component, ViewContainerRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { UIService } from '../../shared/ui.service';
 import { ChallengeService } from '../challenge.service';
 import { Challenge } from '../challenge.model';
 import { Day, DayStatus } from '../day.model';
@@ -14,11 +13,10 @@ import { Day, DayStatus } from '../day.model';
 export class CurrentChallengeComponent implements OnInit, OnDestroy {
   weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   currentChallenge: Challenge;
+  isLoading = false;
   private curChallengeSub: Subscription;
 
   constructor(
-    private vcRef: ViewContainerRef,
-    private uiService: UIService,
     private challengeService: ChallengeService
   ) {}
 
@@ -26,6 +24,16 @@ export class CurrentChallengeComponent implements OnInit, OnDestroy {
     this.curChallengeSub = this.challengeService.currentChallenge.subscribe(
       challenge => {
         this.currentChallenge = challenge;
+      }
+    );
+    this.challengeService.fetchCurrentChallenge().subscribe(
+      res => {
+        console.log('Fetched challenge...');
+        this.isLoading = false;
+      },
+      err => {
+        console.log(err);
+        this.isLoading = false;
       }
     );
   }

@@ -9,6 +9,7 @@ import { UIService } from '../../ui.service';
 })
 export class ActionBarComponent implements OnInit {
   @Input() title: string;
+  @Input() hasChallenge = false;
 
   constructor(
     private uiService: UIService

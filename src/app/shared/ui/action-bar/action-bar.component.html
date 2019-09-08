@@ -15,7 +15,7 @@
           >Replace</a
         >
       </li>
-      <li>
+      <li *ngIf="hasChallenge">
         <a routerLink="/challenges/edit" routerLinkActive="active">Edit</a>
       </li>
     </ul>

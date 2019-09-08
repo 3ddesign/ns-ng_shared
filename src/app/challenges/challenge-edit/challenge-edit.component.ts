@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { take, switchMap } from 'rxjs/operators';
 
 import { ChallengeService } from '../challenge.service';
 
@@ -32,11 +33,24 @@ export class ChallengeEditComponent implements OnInit {
       }
       if (!this.isCreating) {
         this.challengeService.currentChallenge
-          .pipe(take(1))
+          .pipe(
+            take(1),
+            switchMap(curChallenge => {
+              if (!curChallenge) {
+                return this.challengeService.fetchCurrentChallenge();
+              }
+              return of(curChallenge);
+            })
+          )
           .subscribe(challenge => {
-            this.title = challenge.title;
-            this.description = challenge.description;
+            if (challenge) {
+              this.title = challenge.title;
+              this.description = challenge.description;
+            }
           });
+      } else {
+        this.title = '';
+        this.description = '';
       }
     });
   }
@@ -44,10 +58,17 @@ export class ChallengeEditComponent implements OnInit {
   onSubmit(title: string, description: string) {
     // ...
     if (this.isCreating) {
-      this.challengeService.createNewChallenge(title, description);
+      this.challengeService
+        .createNewChallenge(title, description)
+        .subscribe(res => {
+          this.router.navigate(['/challenges/current-challenge']);
+        });
     } else {
-      this.challengeService.updateChallenge(title, description);
+      this.challengeService
+        .updateChallenge(title, description)
+        .subscribe(res => {
+          this.router.navigate(['/challenges/current-challenge']);
+        });
     }
-    this.router.navigate(['..'], { relativeTo: this.activatedRoute });
   }
 }
