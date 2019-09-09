@@ -6,11 +6,15 @@ import { CurrentChallengeComponent } from './current-challenge/current-challenge
 import { TodayComponent } from './today/today.component';
 import { SharedModule } from '../shared/shared.module';
 import { ChallengeActionsModule } from './challenge-actions/challenge-actions.module';
+import { DayModalComponent } from './day-modal/day-modal.component';
+import { BackdropComponent } from './day-modal/backdrop.component';
 
 @NgModule({
   declarations: [
     CurrentChallengeComponent,
-    TodayComponent
+    TodayComponent,
+    DayModalComponent,
+    BackdropComponent
   ],
   imports: [
     CommonModule,

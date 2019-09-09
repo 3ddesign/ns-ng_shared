@@ -6,7 +6,7 @@ import { DayStatus } from '../day.model';
 @Component({
   selector: 'ns-day-modal',
   templateUrl: './day-modal.component.html',
-  styleUrls: ['./day-modal.component.css'],
+  styleUrls: ['./day-modal.component.scss'],
   moduleId: module.id
 })
 export class DayModalComponent implements OnInit {

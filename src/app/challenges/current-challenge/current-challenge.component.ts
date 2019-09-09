@@ -14,11 +14,10 @@ export class CurrentChallengeComponent implements OnInit, OnDestroy {
   weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   currentChallenge: Challenge;
   isLoading = false;
+  selectedDay: Day;
   private curChallengeSub: Subscription;
 
-  constructor(
-    private challengeService: ChallengeService
-  ) {}
+  constructor(private challengeService: ChallengeService) {}
 
   ngOnInit() {
     this.curChallengeSub = this.challengeService.currentChallenge.subscribe(
@@ -59,6 +58,19 @@ export class CurrentChallengeComponent implements OnInit, OnDestroy {
     if (!this.getIsSettable(day.dayInMonth)) {
       return;
     }
+    this.selectedDay = day;
+  }
+
+  onUpdateState(selectedStatus: DayStatus) {
+    if (selectedStatus === DayStatus.Open) {
+      this.selectedDay = null;
+      return;
+    }
+    this.challengeService.updateDayStatus(
+      this.selectedDay.dayInMonth,
+      selectedStatus
+    );
+    this.selectedDay = null;
   }
 
   ngOnDestroy() {
