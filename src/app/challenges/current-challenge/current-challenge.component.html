@@ -1,6 +1,8 @@
 <ns-day-modal
   *ngIf="selectedDay"
   (actionSelect)="onUpdateState($event)"
+  [selectedDate]="selectedDay.date"
+  [selectedStatus]="selectedDay.status"
 ></ns-day-modal>
 
 <ns-action-bar title="Current Challenge" [hasChallenge]="currentChallenge">
