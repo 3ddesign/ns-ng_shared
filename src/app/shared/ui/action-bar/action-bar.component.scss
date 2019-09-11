@@ -35,16 +35,23 @@
     margin: 0 8px;
   }
 
-  a {
+  a,
+  button {
     text-decoration: none;
     color: white;
     padding: 4px 8px;
     border-radius: 5px;
+    font: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: none;
   }
 
   a:hover,
   a:active,
-  a.active {
+  a.active,
+  button:hover,
+  button:active {
     background: white;
     color: $primary;
   }
