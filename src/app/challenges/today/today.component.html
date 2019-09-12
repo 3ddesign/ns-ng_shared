@@ -1,12 +1,12 @@
 <ns-action-bar [hasChallenge]="currentDay"></ns-action-bar>
 
-<div class="page" *ngIf="!currentDay">
+<div class="page" *ngIf="!currentDay && !isLoading">
   <p>No challenge found!</p>
   <button class="btn btn-primary" routerLink="/challenges/replace">
     Create One!
   </button>
 </div>
-<div class="page" *ngIf="currentDay">
+<div class="page" *ngIf="currentDay && !isLoading">
   <h1 class="h1">{{ currentDay.date | date }}</h1>
   <ns-challenge-actions
     (actionSelect)="onActionSelected($event)"
@@ -15,3 +15,4 @@
     cancelText="Reset"
   ></ns-challenge-actions>
 </div>
+<ns-loading-indicator *ngIf="isLoading"></ns-loading-indicator>

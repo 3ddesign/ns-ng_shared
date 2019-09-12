@@ -2,6 +2,7 @@
 <form
   class="form"
   (ngSubmit)="onSubmit(titleCtrl.value, descriptionCtrl.value)"
+  *ngIf="!isLoading"
 >
   <div class="input-field">
     <label
@@ -47,3 +48,4 @@
     Save
   </button>
 </form>
+<ns-loading-indicator *ngIf="isLoading"></ns-loading-indicator>

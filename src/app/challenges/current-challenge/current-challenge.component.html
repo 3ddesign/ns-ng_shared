@@ -9,7 +9,7 @@
 </ns-action-bar>
 
 <div class="page">
-  <div *ngIf="!currentChallenge">
+  <div *ngIf="!currentChallenge && !isLoading">
     <p>No challenge found!</p>
     <button class="btn btn-primary" routerLink="/challenges/replace">
       Create One!
@@ -19,7 +19,7 @@
     <h1 class="h1 text-center">{{ currentChallenge.title }}</h1>
     <p class="text-center">{{ currentChallenge.description }}</p>
   </div>
-  <div class="grid" *ngIf="currentChallenge">
+  <div class="grid" *ngIf="currentChallenge && !isLoading">
     <span
       class="text-center week-day-label"
       *ngFor="let weekDay of weekDays; let i = index"
@@ -34,9 +34,11 @@
         completed: day.status === 1,
         failed: day.status === 2
       }"
+      [ngStyle]="{ 'grid-row': getRow(i, day), 'grid-column': day.dayInWeek + 1 }"
       (click)="onChangeStatus(day)"
     >
       <span>{{ day.dayInMonth }}</span>
     </div>
   </div>
+  <ns-loading-indicator *ngIf="isLoading"></ns-loading-indicator>
 </div>
