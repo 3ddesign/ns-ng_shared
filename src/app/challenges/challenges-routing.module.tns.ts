@@ -20,6 +20,18 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'today',
+    component: ChallengeTabsComponent,
+    children: [
+      { path: 'today', component: TodayComponent, outlet: 'today' },
+      {
+        path: 'current-challenge',
+        component: CurrentChallengeComponent,
+        outlet: 'currentChallenge'
+      }
+    ]
+  },
+  {
     path: ':mode',
     loadChildren:
       '~/app/challenges/challenge-edit/challenge-edit.module#ChallengeEditModule'

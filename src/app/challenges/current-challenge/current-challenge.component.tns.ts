@@ -2,7 +2,7 @@ import { Component, ViewContainerRef, OnInit, OnDestroy } from '@angular/core';
 import { ModalDialogService } from 'nativescript-angular/modal-dialog';
 import { Subscription } from 'rxjs';
 
-import { DayModalComponent } from '../day-modal/day-modal.component.tns';
+import { DayModalComponent } from '../day-modal/day-modal.component';
 import { UIService } from '../../shared/ui.service';
 import { ChallengeService } from '../challenge.service';
 import { Challenge } from '../challenge.model';
