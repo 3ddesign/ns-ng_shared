@@ -28,11 +28,9 @@ export class TodayComponent implements OnInit, OnDestroy {
 
     this.challengeService.fetchCurrentChallenge().subscribe(
       res => {
-        console.log('Fetched challenge...');
         this.isLoading = false;
       },
       err => {
-        console.log(err);
         this.isLoading = false;
       }
     );

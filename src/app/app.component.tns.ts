@@ -49,7 +49,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onChallengeInput(challengeDescription: string) {
     this.activeChallenge = challengeDescription;
-    console.log('onChallengeInput: ', challengeDescription);
   }
 
   onLogout() {

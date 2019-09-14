@@ -69,7 +69,6 @@ export class AuthComponent implements OnInit {
           this.router.navigate(['/challenges']);
         },
         err => {
-          console.log(err);
           this.isLoading = false;
         }
       );
@@ -80,7 +79,6 @@ export class AuthComponent implements OnInit {
           this.router.navigate(['/challenges']);
         },
         err => {
-          console.log(err);
           this.isLoading = false;
         }
       );

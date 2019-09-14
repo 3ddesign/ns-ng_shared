@@ -17,11 +17,9 @@ var ChallengeTabsComponent = /** @class */ (function () {
         var _this = this;
         this.isLoading = true;
         this.challengeService.fetchCurrentChallenge().subscribe(function (res) {
-            console.log('Fetched challenge...');
             _this.isLoading = false;
             _this.loadTabRoutes();
         }, function (err) {
-            console.log(err);
             _this.isLoading = false;
             _this.loadTabRoutes();
         });

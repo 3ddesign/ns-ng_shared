@@ -28,11 +28,9 @@ export class CurrentChallengeComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.challengeService.fetchCurrentChallenge().subscribe(
       res => {
-        console.log('Fetched challenge...');
         this.isLoading = false;
       },
       err => {
-        console.log(err);
         this.isLoading = false;
       }
     );

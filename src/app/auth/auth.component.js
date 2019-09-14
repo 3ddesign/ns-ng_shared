@@ -51,7 +51,6 @@ var AuthComponent = /** @class */ (function () {
                 _this.isLoading = false;
                 _this.router.navigate(['/challenges']);
             }, function (err) {
-                console.log(err);
                 _this.isLoading = false;
             });
         }
@@ -60,7 +59,6 @@ var AuthComponent = /** @class */ (function () {
                 _this.isLoading = false;
                 _this.router.navigate(['/challenges']);
             }, function (err) {
-                console.log(err);
                 _this.isLoading = false;
             });
         }

@@ -31,11 +31,6 @@ export class ChallengeService implements OnDestroy {
         if (!currentUser || !currentUser.isAuth) {
           return of(null);
         }
-        console.log(
-          `https://ns-ng-course.firebaseio.com/challenge/${
-            currentUser.id
-          }.json?auth=${currentUser.token}`
-        );
         return this.http.get<{
           title: string;
           description: string;

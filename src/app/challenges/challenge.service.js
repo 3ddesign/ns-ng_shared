@@ -31,7 +31,6 @@ var ChallengeService = /** @class */ (function () {
             if (!currentUser || !currentUser.isAuth) {
                 return rxjs_1.of(null);
             }
-            console.log("https://ns-ng-course.firebaseio.com/challenge/" + currentUser.id + ".json?auth=" + currentUser.token);
             return _this.http.get("https://ns-ng-course.firebaseio.com/challenge/" + currentUser.id + ".json?auth=" + currentUser.token);
         }), operators_1.tap(function (resData) {
             if (resData) {
@@ -78,7 +77,6 @@ var ChallengeService = /** @class */ (function () {
             return _this.http.put("https://ns-ng-course.firebaseio.com/challenge/" + currentUser.id + ".json?auth=" + currentUser.token, challenge);
         }))
             .subscribe(function (res) {
-            console.log(res);
         });
     };
     ChallengeService = __decorate([
